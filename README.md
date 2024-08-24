@@ -10,7 +10,7 @@ The aim of this project was to model an e-sports event website that stored infor
 2. E-sports competitors and spectators who can access information to assist them regarding available tournaments, based on specific criterias, such as ticket prices or tournament hosts.
 
 
-## Required Queries and Operations:
+## Queries and Operations:
 
 The website allows users to:
 * **Insertion Operation**
