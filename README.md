@@ -13,17 +13,26 @@ The aim of this project was to model an e-sports event website that stored infor
 ## Required Queries and Operations:
 
 The website allows users to:
-* **Insertion Operation** -
-- Add players to an existing team using their gamer tag, name, birthdate, nationality, phone number, team name and contract length.
-* Update Operation - Update a player’s birthday information using their gamer tag, name and new birthdate.
-* Select Operation - Filter games in the database based on the number of participants required and whether or not the games are cross-platform (i.e. they can be played on multiple platforms such as PC, Xbox, PS5 etc.).
-* Deletion Operation - Delete a specified organization. If the organization is deleted, all associated employees will also be deleted by the DELETE ON CASCADE functionality.
-* Projection Query - Display Tournament Names and Ticket Prices less or equal to than a certain ticket price from a specific organization by specifying the maximum ticket price and the organization of interest.
-* Join Query - Display Names of Spectators that have attended a specified tournament by specifying the tournament name.
-* Aggregation with having - Find the total amount contributed by each sponsor equal to or above a certain specified value.
-* Aggregation with Group By Query - View total viewership from each country based on a specified maximum value that is spent by each organization.
-* Nested Aggregation Query - View organizations for which their average tournament prize is the maximum over all tournaments.
-* Division Query - Identify the sponsor(s) that have sponsored every recorded esports tournament.
+* **Insertion Operation**
+  * Add players to an existing team using their gamer tag, name, birthdate, nationality, phone number, team name and contract length.
+* **Update Operation**
+  * Update a player’s birthday information using their gamer tag, name and new birthdate.
+* **Select Operation**
+  * Filter games in the database based on the number of participants required and whether or not the games are cross-platform (i.e. they can be played on multiple platforms such as PC, Xbox, PS5 etc.).
+* **Deletion Operation**
+  * Delete a specified organization. If the organization is deleted, all associated employees will also be deleted by the DELETE ON CASCADE functionality.
+* **Projection Query**
+  * Display Tournament Names and Ticket Prices less or equal to than a certain ticket price from a specific organization by specifying the maximum ticket price and the organization of interest.
+* **Join Query**
+  * Display Names of Spectators that have attended a specified tournament by specifying the tournament name.
+* **Aggregation with having**
+  * Find the total amount contributed by each sponsor equal to or above a certain specified value.
+* **Aggregation with Group By Query**
+  * View total viewership from each country based on a specified maximum value that is spent by each organization.
+* **Nested Aggregation Query**
+  * View organizations for which their average tournament prize is the maximum over all tournaments.
+* **Division Query**
+  * Identify the sponsor(s) that have sponsored every recorded esports tournament.
 
 
 
