@@ -33,6 +33,10 @@ The website allows users to:
   * View organizations for which their average tournament prize is the maximum over all tournaments.
 * **Division Query**
   * Identify the sponsor(s) that have sponsored every recorded esports tournament.
+ 
+
+## ER Diagram
+
 
 
 
