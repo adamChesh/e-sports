@@ -13,7 +13,8 @@ The aim of this project was to model an e-sports event website that stored infor
 ## Required Queries and Operations:
 
 The website allows users to:
-* **Insertion Operation** - Add players to an existing team using their gamer tag, name, birthdate, nationality, phone number, team name and contract length.
+* **Insertion Operation** -
+- Add players to an existing team using their gamer tag, name, birthdate, nationality, phone number, team name and contract length.
 * Update Operation - Update a player’s birthday information using their gamer tag, name and new birthdate.
 * Select Operation - Filter games in the database based on the number of participants required and whether or not the games are cross-platform (i.e. they can be played on multiple platforms such as PC, Xbox, PS5 etc.).
 * Deletion Operation - Delete a specified organization. If the organization is deleted, all associated employees will also be deleted by the DELETE ON CASCADE functionality.
