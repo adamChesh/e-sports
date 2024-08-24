@@ -36,7 +36,7 @@ The website allows users to:
  
 
 ## ER Diagram
-
+![ER Diagram](E-Sports_ER_Diagram.png)
 
 
 
