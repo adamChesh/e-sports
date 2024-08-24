@@ -6,8 +6,8 @@
 This project models an esports organization that organizes both live and online video game tournaments. The organization earns revenue from ticket sales, advertising, and entry fees. It employs one or more staff members responsible for tasks such as booking venues for events. Additionally, the organization partners with broadcast companies to obtain the rights to stream or broadcast tournaments on their platforms. Teams, consisting of one or more players, register to compete in these tournaments.
 
 The aim of this project was to model an e-sports event website that stored information about multiple tournaments. This information included corresponding organizers, audiences, competitors, and spectators. The final product is a web interface that allows users to query information about e-sports tournaments, games, organizations, viewership, sponsors, and players. For this database there exists two intended users:
-* Website administrative users who can access and edit all information, including specific players, teams and sponsor contributions.
-* E-sports competitors and spectators who can access information to assist them regarding available tournaments, based on specific criterias, such as ticket prices or tournament hosts.
+1. Website administrative users who can access and edit all information, including specific players, teams and sponsor contributions.
+2. E-sports competitors and spectators who can access information to assist them regarding available tournaments, based on specific criterias, such as ticket prices or tournament hosts.
 
 
 ## Required Queries and Operations:
