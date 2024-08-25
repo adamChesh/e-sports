@@ -14,7 +14,7 @@
   OCILogon below to be your ORACLE username and password -->
 
 <!-- ***ADAM NOTE***
- I changed name of file to eSportsLeagueFinalVersion.php; it was previously called project-file-test.php
+ I changed name of file to eSportsLeagueDatabase.php; it was previously called project-file-test.php
  If any issues occur when I run it it may have something to do with that. It should only be in the html partion of the code
  -->
 
@@ -33,7 +33,7 @@
 <p>If you wish to reset the tables to their original values press on the reset button. If this is the first time you're
     running this page, you MUST use reset to ensure the tables are generated correctly</p>
 
-<form method="POST" action="eSportsLeagueFinalVersion.php">
+<form method="POST" action="eSportsLeagueDatabase.php">
     <!-- if you want another page to load after the button is clicked, you have to specify that page in the action parameter -->
     <input type="hidden" id="resetTablesRequest" name="resetTablesRequest">
     <p><input type="submit" value="Reset" name="reset"></p>
@@ -42,7 +42,7 @@
 <hr/>
 
 <h2>Add Player to existing team</h2>
-<form method="POST" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="POST" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
     Gamer Tag: <input type="text" name="insName"> <br/><br/>
     Name: <input type="text" name="insRealName"> <br/><br/>
@@ -60,7 +60,7 @@
 <h2>Update Player Birthday</h2>
 <p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
 
-<form method="POST" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="POST" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="updateQueryRequest" name="updateQueryRequest">
     Gamer Tag : <input type="text" name="playerTag"> <br/><br/>
     Name: <input type="text" name="playerName"> <br/><br/>
@@ -72,7 +72,7 @@
 <hr/>
 
 <h2>Count Players</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="countTupleRequest" name="countTupleRequest">
     <input type="submit" name="countTuples"></p>
 </form>
@@ -81,14 +81,14 @@
 
 <h2>Display Tournament Names and Ticket Prices less or equal to than a certain ticket price from a specific organization
     - Projection</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="displayTournamentRequest" name="displayTournamentRequest">
     Ticket Price Maximum Value : <input type="number" name="maxValue"> <br/><br/>
     <input type="submit" value="show Tournaments" name="displayTournamentTuples"></p>
 </form>
 
 <h2>Display Names of Spectators that have attended a specified tournament - Join </h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="displaySpectatorsRequest" name="displaySpectatorsRequest">
     Tournament Name : <input type="text" name="tournamentName"> <br/><br/>
     <input type="submit" value="show spectators" name="displaySpectatorsTuples"></p>
@@ -96,13 +96,13 @@
 
 
 <h2>Display Players</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="displayPlayerTupleRequest" name="displayPlayerTupleRequest">
     <input type="submit" value="show players" name="displayPlayerTuples"></p>
 </form>
 
 <h2>Display Team</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="displayTeamTupleRequest" name="displayTeamTupleRequest">
     <input type="submit" value="show teams" name="displayTeamTuples"></p>
 </form>
@@ -110,7 +110,7 @@
 <hr/>
 
 <h2>Display Funding Sponsors</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="displayFundsTupleRequest" name="displayFundsTupleRequest">
     <input type="submit" value="Show Sponsors" name="displayFundsTuples"></p>
 </form>
@@ -118,7 +118,7 @@
 <hr/>
 
 <h2>Display Organizations</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="displayOrganizationsTupleRequest" name="displayFundsTupleRequest">
     <input type="submit" value="Show Organizations" name="displayOrganizationsTuples"></p>
 </form>
@@ -126,7 +126,7 @@
 <hr/>
 
 <h2>Display Employees</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php"> <!--refresh page when submitted-->
+<form method="GET" action="eSportsLeagueDatabase.php"> <!--refresh page when submitted-->
     <input type="hidden" id="displayEmployeesTupleRequest" name="displayFundsTupleRequest">
     <input type="submit" value="Show Employees" name="displayEmployeesTuples"></p>
 </form>
@@ -134,7 +134,7 @@
 <hr/>
 
 <h2>Delete Organization</h2>
-<form method="POST" action="eSportsLeagueFinalVersion.php"><!--refresh page when submitted-->
+<form method="POST" action="eSportsLeagueDatabase.php"><!--refresh page when submitted-->
     <input type="hidden" id="deletePlayerRequest" name="deleteOrganizationRequest">
     Organization Name: <input type="text" name="orgName"> <br/><br/>
     <input type="submit" value="Delete Organization" name="deleteSubmit">
@@ -144,7 +144,7 @@
 <hr/>
 
 <h2>View Viewership From Each Country Based Off Amount Spent or Less per Company</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php">
+<form method="GET" action="eSportsLeagueDatabase.php">
     <input type="hidden" id="aggregationGroupByRequest" name="aggregationGroupByRequest">
     Canadian Dollar Amount: <input type="number" name="dollarAmount"> <br/><br/>
 
@@ -152,7 +152,7 @@
 </form>
 
 <h2>Find a Sponsor Who Has Sponsored Every Event</h2>
-<form method="GET" action="eSportsLeagueFinalVersion.php">
+<form method="GET" action="eSportsLeagueDatabase.php">
     <input type="hidden" id="divisionQueryRequest" name="divisionQueryRequest">
     <input type="submit" value="Find Sponsor" name="divisionQuerySubmit">
 </form>
