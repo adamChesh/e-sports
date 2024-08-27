@@ -2,16 +2,14 @@
   Created by Jiemin Zhang
   Modified by Simona Radu
   Modified by Jessica Wong (2018-06-22)
-  This file shows the very basics of how to execute PHP commands
-  on Oracle.
 
   IF YOU HAVE A TABLE CALLED "demoTable" IT WILL BE DESTROYED
   The script assumes you already have a server set up
-  All OCI commands are commands to the Oracle libraries
+  All pg commands are commands to the postgreSQL libraries
   To get the file to work, you must place it somewhere where your
-  Apache server can run it, and you must rename it to have a ".php"
-  extension.  You must also change the username and password on the
-  OCILogon below to be your ORACLE username and password 
+  server can run it, and you must rename it to have a ".php"
+  extension.  You must also change the username, password, host, and dbname on the
+  pg_connect below to be your corresponding postgreSQL details.
 -->
 
 <!-- This file has been modified from the UBC CPSC 304 2018 Winter Term 1 Oracle file-->
