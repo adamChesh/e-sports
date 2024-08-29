@@ -171,6 +171,7 @@ $success = True; //keep track of errors so it redirects the page only if there a
 $db_conn = NULL; // edit the login credentials in connectToDB()
 $show_debug_alert_messages = False; // set to True if you want alerts to show you which methods are being triggered (see how it is used in debugAlertMessage())
 
+// an alert message that can be used for debugging system
 function debugAlertMessage($message)
 {
     global $show_debug_alert_messages;
@@ -179,13 +180,11 @@ function debugAlertMessage($message)
         echo "<script type='text/javascript'>alert('" . $message . "');</script>";
     }
 }
-
+// takes a plain (no bound variables) SQL command and executes it
 function executePlainSQL($cmdstr)
-{ //takes a plain (no bound variables) SQL command and executes it
-    //echo "<br>running ".$cmdstr."<br>";
+{   //echo "<br>running ".$cmdstr."<br>";
     global $db_conn, $success;
 
-    // 
     $result = pg_query($db_conn, $cmdstr);
 
     if (!$result) {
@@ -197,14 +196,11 @@ function executePlainSQL($cmdstr)
 
     return $result;
 }
-
+/* Sometimes the same statement will be executed several times with different values for the variables involved in the query.
+In this case you don't need to create the statement several times. Bound variables cause a statement to only be
+parsed once and you can reuse the statement. This is also very useful in protecting against SQL injection. */
 function executeBoundSQL($cmdstr, $params)
 {
-    /* Sometimes the same statement will be executed several times with different values for the variables involved in the query.
-In this case you don't need to create the statement several times. Bound variables cause a statement to only be
-parsed once and you can reuse the statement. This is also very useful in protecting against SQL injection.
-See the sample code below for how this function is used */
-
     global $db_conn, $success;
     $result = pg_query_params($db_conn, $cmdstr, $params);
 
@@ -215,7 +211,7 @@ See the sample code below for how this function is used */
         $success = False;
     }
 }
-
+// takes the results of query, and prints the information of the corresponding player
 function printPlayerResult($result)
 { //prints results from a select statement
     echo "<br>Current Players:<br>";
@@ -228,7 +224,7 @@ function printPlayerResult($result)
 
     echo "</table>";
 }
-
+// takes the results of query, and prints the information of the corresponding team
 function printTeamResult($result)
 { //prints results from a select statement
     echo "<br>Current Teams:<br>";
@@ -242,7 +238,7 @@ function printTeamResult($result)
     echo "</table>";
 }
 
-
+// connects to the postgreSQL database, and handles errors if need be
 function connectToDB()
 {
     global $db_conn;
@@ -260,7 +256,7 @@ function connectToDB()
         return false;
     }
 }
-
+// disconnects system from the database
 function disconnectFromDB()
 {
     global $db_conn;
@@ -268,7 +264,7 @@ function disconnectFromDB()
     debugAlertMessage("Disconnect from Database");
     pg_close($db_conn);
 }
-
+// executes an update request for a player within the PLayer table
 function handleUpdateRequest()
 {
     global $db_conn;
@@ -283,7 +279,7 @@ function handleUpdateRequest()
     pg_query($db_conn, "COMMIT");
 }
 
-
+// resets the database to the original placeholder values
 function handleResetRequest()
 {
     global $db_conn;
@@ -512,7 +508,7 @@ function handleResetRequest()
     pg_query($db_conn, "COMMIT");
 }
 
-
+// executes an insert request into the PLayer table
 function handleInsertRequest()
 {
     global $db_conn;
@@ -534,6 +530,7 @@ function handleInsertRequest()
     pg_query($db_conn, "COMMIT");
 }
 
+// counts the number of players within the player table, and prints result
 function handleCountRequest()
 {
     global $db_conn;
@@ -545,6 +542,7 @@ function handleCountRequest()
     }
 }
 
+// gets the entire player table, and then prints results
 function handleDisplayPlayerRequest()
 {
     global $db_conn;
@@ -553,7 +551,7 @@ function handleDisplayPlayerRequest()
     printPlayerResult($result);
 }
 
-
+// gets the entire team table, and then prints results
 function handleDisplayTeamRequest()
 {
     global $db_conn;
@@ -562,6 +560,7 @@ function handleDisplayTeamRequest()
     printTeamResult($result);
 }
 
+// gets the entire funds table, and then prints results
 function handleDisplayFundsRequest()
 {
     global $db_conn;
@@ -572,6 +571,7 @@ function handleDisplayFundsRequest()
     pg_query($db_conn, "COMMIT");
 }
 
+// receives a sql result, and prints out the rows from funds table
 function printFundsResult($result)
 { //prints results from a select statement
     echo "<br>Current Sponsors:<br>";
@@ -585,6 +585,7 @@ function printFundsResult($result)
     echo "</table>";
 }
 
+// gets the entire organization table, and the prints it out
 function handleDisplayOrganizationsRequest()
 {
     global $db_conn;
@@ -595,6 +596,7 @@ function handleDisplayOrganizationsRequest()
     pg_query($db_conn, "COMMIT");
 }
 
+// recieves the sql result from query, and prints the rows from organization table
 function printOrganizationResult($result)
 { //prints results from a select statement
     echo "<br>Current Organizations:<br>";
@@ -608,6 +610,7 @@ function printOrganizationResult($result)
     echo "</table>";
 }
 
+// produces the entire employees table
 function handleDisplayEmployeesRequest()
 {
     global $db_conn;
@@ -618,6 +621,7 @@ function handleDisplayEmployeesRequest()
     pg_query($db_conn, "COMMIT");
 }
 
+// recieves a sql result, and prints out rows from Employee table
 function printEmployeeResult($result)
 { //prints results from a select statement
     echo "<br>Current Employees:<br>";
@@ -631,6 +635,7 @@ function printEmployeeResult($result)
     echo "</table>";
 }
 
+// takes the input from user and deletes corresponding organization, then prints out organization was deleted
 function handleDeleteRequest()
 {
     global $db_conn;
@@ -646,6 +651,8 @@ function handleDeleteRequest()
 
 }
 
+// takes the monetary input from user, and produces all results of the cost less than the input.
+// produces the total viewership, the countries, the number of tuples, and total cost, while grouping by country
 function handleAggregationWithGroupBy()
 {
     global $db_conn;
@@ -664,6 +671,7 @@ function handleAggregationWithGroupBy()
     pg_query($db_conn,"COMMIT");
 }
 
+// recieves a sql result and prints out the corresponding table from the handleAggregationWithGroupBy function
 function printGroupByResult($result)
 {
 
@@ -678,6 +686,7 @@ function printGroupByResult($result)
     echo "</table>";
 }
 
+// produces the sponsor names of organizations that sponsored every event
 function handleDivisionQuery()
 {
     global $db_conn;
@@ -697,6 +706,7 @@ function handleDivisionQuery()
     pg_query($db_conn, "COMMIT");
 }
 
+// recieves the sql result and prints the tuples from handleDivisionQuery function
 function printDivisionDetails($result)
 {
     echo "<br>Sponsor Who Has Supported Every Tournament:<br>";
@@ -710,6 +720,7 @@ function printDivisionDetails($result)
     echo "</table>";
 }
 
+// recieves the sql result and prints the tuples that were produced from the handleDisplayTournamentRequest function
 function printTournamentDetails($result)
 {
 
@@ -725,6 +736,8 @@ function printTournamentDetails($result)
 
 }
 
+// takes input from the user, and takes tuples that have a ticket price that is less than the user input.
+// produces tournament name and ticket price from the Tournament table
 function handleDisplayTournamentRequest()
 {
     global $db_conn;
@@ -740,6 +753,8 @@ function handleDisplayTournamentRequest()
 }
 
 
+// receives a tournament name and a sql result. Tournament name along with the results from 
+// handleDisplaySpectatorsRequest are printed on the screen
 function printSpectatorDetails($result, $tournament_Name)
 {
 
@@ -754,7 +769,8 @@ function printSpectatorDetails($result, $tournament_Name)
     echo "</table>";
 
 }
-
+// takes the tournament name from user input, and produces a table with the spectators info
+// of the people who will be attending that tournament
 function handleDisplaySpectatorsRequest()
 {
     global $db_conn;
