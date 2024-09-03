@@ -187,6 +187,7 @@ function executePlainSQL($cmdstr)
 
     $result = pg_query($db_conn, $cmdstr);
 
+    // if result param is empty, then throw error
     if (!$result) {
         echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
         $error = pg_last_error($db_conn);
@@ -218,6 +219,8 @@ function printPlayerResult($result)
     echo "<table border=\"1\">";
     echo "<tr><th>   Gamer Tag  </th><th>  Player Name  </th><th>Date Of Birth</th><th>Nationality</th><th>Phone Number</th><th>Team Name</th><th>Contract Length</th></tr>";
 
+    // pg_fetch_assoc will grab each row from the table to be printed until there is none left,
+    // in which it will return false and kill the loop
     while ($row = pg_fetch_assoc($result)) {
         echo "<tr><td>  " . htmlspecialchars($row["INGAMENAME"]) . "  </td><td>  " . htmlspecialchars($row["PLAYERNAME"]) . "  </td><td>  " . htmlspecialchars($row["DATEOFBIRTH"]) . "  </td><td>  " . htmlspecialchars($row["NATIONALITY"]) . "  </td><td>  " . htmlspecialchars($row["PHONENUMBER"]) . "  </td><td>  " . htmlspecialchars($row["TEAMNAME"]) . "  </td><td>  " . htmlspecialchars($row["CONTRACTLENGTH"]) . "  </td></tr>";
     }
@@ -246,6 +249,7 @@ function connectToDB()
     // fill in the parameters with your information to connect to your postgres database
     $db_conn = pg_connect("host=??? dbname=??? user=??? pass=???");
 
+    // tell user whether it has connected or not, if not then print error
     if ($db_conn) {
         debugAlertMessage("Database is Connected");
         return true;
@@ -264,6 +268,7 @@ function disconnectFromDB()
     debugAlertMessage("Disconnect from Database");
     pg_close($db_conn);
 }
+
 // executes an update request for a player within the PLayer table
 function handleUpdateRequest()
 {
@@ -272,6 +277,8 @@ function handleUpdateRequest()
     $real_name = $_POST['playerName'];
     $new_bday = $_POST['newBirthday'];
 
+    // the player parameters are placed in an array, and the numbers in the SQL command correspond
+    // to the position of that array
     $cmdstr = "UPDATE Player SET dateOfBirth=$1 WHERE inGameName=$2 AND playerName=$3";
     $params = array($new_bday, $gamer_tag, $real_name);
     executeBoundSQL($cmdstr, $params);
@@ -838,29 +845,14 @@ function handleGETRequest()
     }
 }
 
-if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit'])) {
+// checks for what action the user has submitted, and route it to the correct handler
+if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit']) || isset($_POST['deleteSubmit'])) {
     handlePOSTRequest();
-} else if (isset($_GET['countTupleRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['displayPlayerTupleRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['displayTeamTupleRequest'])) {
-    handleGETRequest();
-} else if (isset($_POST['deleteSubmit'])) {
-    handlePOSTRequest();
-} else if (isset($_GET['displayTournamentRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['displaySpectatorsRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['aggregationGroupByRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['divisionQueryRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['displayFundsTupleRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['displayOrganizationsTupleRequest'])) {
-    handleGETRequest();
-} else if (isset($_GET['displayEmployeesTupleRequest'])) {
+} else if (isset($_GET['countTupleRequest']) || isset($_GET['displayPlayerTupleRequest']) ||
+            isset($_GET['displayTeamTupleRequest']) || isset($_GET['displayTournamentRequest']) || 
+            isset($_GET['displaySpectatorsRequest']) || isset($_GET['aggregationGroupByRequest']) || 
+            isset($_GET['divisionQueryRequest']) || isset($_GET['displayFundsTupleRequest']) || 
+            isset($_GET['displayOrganizationsTupleRequest']) || isset($_GET['displayEmployeesTupleRequest'])) {
     handleGETRequest();
 }
 
